@@ -84,7 +84,7 @@ if (EncompassesPoint(PrimitiveComponent->GetComponentLocation()))
 
 # Cull Distance Volume应用的时机
 
-实质上是会调用``UWorld::UpdateCullDistanceVolumes(AActor* ActorToUpdate = nullptr, UPrimitiveComponent* ComponentToUpdate = nullptr);`
+实质上是会调用`UWorld::UpdateCullDistanceVolumes(AActor* ActorToUpdate = nullptr, UPrimitiveComponent* ComponentToUpdate = nullptr);`
 对Volume的编辑会导致World的下次tick更新所有的Actor，通过 `GetWorld()->bDoDelayedUpdateCullDistanceVolumes = true;`
 
 
