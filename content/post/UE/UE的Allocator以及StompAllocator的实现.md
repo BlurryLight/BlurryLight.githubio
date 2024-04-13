@@ -146,9 +146,11 @@ FMalloc* FWindowsPlatformMemory::BaseAllocator()
 
 StompMalloc实现的挺好的，主要是在分配的时候会分配一个额外的保护页，越界写会立刻崩溃。
 
-主要看 Malloc和Free的实现。关于剖析也很多
-可以参考以下博客，里面有两张很清晰的图片示例
-> 参考：[Memory stomp allocator for Unreal Engine 4. | Pablo Zurita's blog](https://pzurita.wordpress.com/2015/06/29/memory-stomp-allocator-for-unreal-engine-4/)
+主要看 Malloc和Free的实现。图片来自`Pablo Zurita`
+
+![UE的Allocator以及StompAllocator的实现-2024-04-13-16-12-33](https://img.blurredcode.com/img/UE的Allocator以及StompAllocator的实现-2024-04-13-16-12-33.png?x-oss-process=style/compress)
+
+![UE的Allocator以及StompAllocator的实现-2024-04-13-16-12-52](https://img.blurredcode.com/img/UE的Allocator以及StompAllocator的实现-2024-04-13-16-12-52.png?x-oss-process=style/compress)
 
 内存踩踏有三种:
 1. 正向越界写
@@ -344,3 +346,6 @@ void FMallocStomp::Free(void* InPtr)
 #endif // PLATFORM_UNIX || PLATFORM_MAC
 }
 ```
+
+# Reference 
+- [WebArchive: Memory stomp allocator for Unreal Engine 4. | Pablo Zurita's blog](https://web.archive.org/web/20231009164648/https://pzurita.wordpress.com/2015/06/29/memory-stomp-allocator-for-unreal-engine-4/)
