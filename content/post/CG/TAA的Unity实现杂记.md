@@ -203,4 +203,9 @@ Color = Color + (Color - (corners * 0.166667)) * 2.718282 * _Sharpness;
 
 # Appendix
 
+## 代码
+
+[Unity Builtin Pipeline Simple TAA](https://gist.github.com/BlurryLight/145131dbacac34345908c529a3488e8f)
+
+## AABB的比较
 <script src="https://gist.github.com/BlurryLight/70e2c778d912996901a0a9d0e3ce18f5.js"></script>
