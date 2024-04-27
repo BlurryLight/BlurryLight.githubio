@@ -9,7 +9,7 @@ slug: "79b3d5d0"
 toc: false
 mermaid: false
 fancybox: false
-blueprint: true
+blueprint: false
 # latex support
 # katex: true
 # markup: mmark
