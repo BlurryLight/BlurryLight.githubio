@@ -60,7 +60,7 @@ vkGetQueryPoolResults(
 > *No more than **512** should be active. There is usually a three (3) frame delay for results.*
 
 
-尽管在真机上测试的时候，创建了超过512个Query也不会报错，但是我在vivo的某台机器上法线，当场景很复杂且Query数量很多的情况下(几千个)，可能会导致vkGetQueryPoolResults超时。(虚幻默认0.5s超时)
+尽管在真机上测试的时候，创建了超过512个Query也不会报错，但是我在vivo的某台机器上发现，当场景很复杂且Query数量很多的情况下(几千个)，可能会导致vkGetQueryPoolResults超时。(虚幻默认0.5s超时)
 
 此外，在虚幻的代码里，如果是GLes的情况，也对Query的数量有一定限制。
 
