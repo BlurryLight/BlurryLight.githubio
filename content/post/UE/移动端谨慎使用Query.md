@@ -20,7 +20,7 @@ blueprint: false
 
 # Occlusion Query
 
-Hardware Occlusion Query在桌面端是一个很可靠的功能， GPU Gems里有好几篇文章都介绍过这个功能用来做开销，也是从零几年就被广泛使用的老技术了，稳定可靠。
+Hardware Occlusion Query在桌面端是一个很可靠的功能， GPU Gems里有好几篇文章都介绍过这个功能用来做Object级别的剔除，也是从零几年就被广泛使用的老技术了，稳定可靠。
 
 > 参考：[Chapter 6. Hardware Occlusion Queries Made Useful | NVIDIA Developer](https://developer.nvidia.com/gpugems/gpugems2/part-i-geometric-complexity/chapter-6-hardware-occlusion-queries-made-useful)
 
