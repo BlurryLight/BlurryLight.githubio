@@ -65,5 +65,7 @@ It was built in about 2013, which was a 32bit executable and without any SIMD op
 
 So, it's not surprising that `ISPCTextureCompressor` completely crushes astcenc in terms of speed.
 
-If you are still using UE4.26 or earlier, you may want to grab a latest `astcenc3` from internet and replace the old one.
+If you are still using UE4.26 or earlier, the first choice is to grab a latest `astcenc3` from internet and replace the old one, and pick some code change from UE5 to make it work(the cmdline options are different).
+The second choice is to recompile `astcenc 1.3` with correct configuration with SIMD optimization and 64bit support and replace the binary in UE directory.
+
 We ran into this problem perhaps also because some configurations were forgotten in the config file during the upgrade of the engine.
