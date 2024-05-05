@@ -92,6 +92,14 @@ void CompilerMSL::emit_glsl_op(uint32_t result_type, uint32_t id, uint32_t eop, 
 
 首先给他提了一个issue，看Khronos那边怎么处理这个情况..但是就算khronos那边修复了，也要等虚幻下次合并spir-v cross才能用上了..
 
+
+**2024/5/5补**:
+
+{{% notice info %}}
+Khronos已经确认并修复了这个问题，见 https://github.com/KhronosGroup/SPIRV-Cross/pull/2317
+碰见这个问题可以pick这个改动
+{{% /notice %}}
+
 临时方案可以用虚幻的节点`Arctangent2Fast`绕过去。
 具体的实现在`fastMath.ush`里，这个函数的拟合来自 https://seblagarde.wordpress.com/2014/12/01/inverse-trigonometric-functions-gpu-optimization-for-amd-gcn-architecture/， 用mathmatica拟合的结果。
 
@@ -118,3 +126,4 @@ float atan2Fast( float y, float x )
 	return t3;
 }
 ```
+
