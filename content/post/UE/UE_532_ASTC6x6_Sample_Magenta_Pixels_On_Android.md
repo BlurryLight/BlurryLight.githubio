@@ -1,6 +1,6 @@
 
 ---
-title: "UE5 Strange Magenta Pixels Sampled in ASTC6x6 On Android"
+title: "UE5: Strange Magenta Pixels Sampled in ASTC6x6 On Android"
 date: 2024-04-25T23:52:24+08:00
 draft: false
 categories: [ "UE" ]
@@ -21,21 +21,21 @@ blueprint: false
 {{% /notice %}}
 
 
-Recently I noticed there are some strange magenta pixels `(1,0,1,1)` appeared on objects on Android Package.
-After quick investigation through Renderdoc, I noticed some textures compressed in ASTC6x6 format have there mipmaps lower than 4x4 filled with magenta pixels.
+Recently I noticed that some strange magenta pixels `(1,0,1,1)` appeared on objects in Android Packages.
+After a quick investigation through Renderdoc, I noticed some textures compressed in ASTC6x6 format have there mipmaps lower than 4x4 filled with magenta pixels.
 
 I'm not sure which way is correct to handle the 4x4 mipmaps and lower for ASTC6x6. 
-These low mipmap grades should probably be filled with the correct pixels (but still take up 6x6 space), or simply not generate these mipmap levels.
-But in no ways they should be filled with magenta pixels.
+These small mipmaps should probably be filled with the correct down-sampled pixels (but still take up 6x6 space), or simply not generate them.
+However, in no way should they be filled with magenta pixels.
 
 
 # Quick Solution
 
-There are two ASTC encoder used in Unreal Engine, one is `astcenc` provided by Arm and the other is `ISPCTextureCompressor` provided by Intel.
-Currently we are using ``ISPCTextureCompressor`.
+There are two ASTC encoders used in Unreal Engine, one is `astcenc` provided by Arm and the other is `ISPCTextureCompressor` provided by Intel.
+Currently we are using `ISPCTextureCompressor`.
 
-I found a similar case reported by other developers in Epic UDN forum and the solution is to use `astcenc` instead of `ISPCTextureCompressor` to solve the problem.
-One of Epic staff replied `astcenc` is now the default and recommended ASTC encoder and `ISPCTextureCompressor` support in Unreal is deprecated and no longer maintained.
+I found a similar case reported by other developers in the Epic UDN forum and the solution is to use `astcenc` instead of `ISPCTextureCompressor` to solve the problem.
+One of Epic staff replied that `astcenc` is now the default and recommended ASTC encoder and `ISPCTextureCompressor` support in Unreal is deprecated and no longer maintained.
 
 
 ```cpp
