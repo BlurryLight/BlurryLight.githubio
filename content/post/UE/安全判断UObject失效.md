@@ -98,6 +98,8 @@ void FWeakObjectPtr::operator=(const class UObject *Object)
 具体可以看`FORCEINLINE FUObjectItem* Internal_GetObjectItem() const`方法的实现，其主要的探测方法即是判断当前`GUObjectArray`是否还有这个Uobject。
 
 另外一个很好的性质就是`FWeakObjectPtr`可以在其他线程探测`UObject`是否有效( `FWeakObjectPtr::IsValid`函数有一个额外参数`bThreadSafeTest`)，因为它内部只有对`GUObjectArray`的读操作，没有写操作。
+而`GUObjectArray`，如果深入去看的话，它的实现类似于`std::deque`，有一个很好的性质是添加元素不会引起对元素的引用失效。
+
 
 # 修复方案
 
