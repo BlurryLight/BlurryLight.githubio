@@ -14,11 +14,8 @@ blueprint: false
 # katex: true
 # markup: mmark
 # mmarktoc: false 
+UEVersion: 5.3.2
 ---
-
-{{% notice info %}}
-    Engine Version: 5.3.2
-{{% /notice %}}
 
 
 Recently I noticed that some strange magenta pixels `(1,0,1,1)` appeared on objects in Android Packages.

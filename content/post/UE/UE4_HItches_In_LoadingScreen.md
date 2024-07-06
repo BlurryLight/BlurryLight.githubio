@@ -13,13 +13,10 @@ fancybox: false
 # katex: true
 # markup: mmark
 # mmarktoc: false 
+UEVersion: 4.26.2
 ---
 
 {{< zhTranslation "谈谈UE4 LoadingScreen卡顿问题" >}} 
-
-{{% notice info %}}
-Engine Version: 4.26.2
-{{% /notice %}}
 
 This blog is just some casual thoughts around one problem I've met.
 I believe there are ways to solve it, However I've yet found.

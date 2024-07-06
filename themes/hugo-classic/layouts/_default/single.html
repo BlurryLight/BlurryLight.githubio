@@ -43,6 +43,10 @@
   {{ end }}
 </aside>
 
+{{ if .Params.UEVersion}}
+<p><b>Engine Version: {{ .Params.UEVersion }}</b></p>
+{{ end }}
+
 <main>
 {{ if .Site.Params.CDN.enable }}
     {{ $reAltIn := "<img src=\"/([^\"]+)\""}}

@@ -14,12 +14,9 @@ blueprint: false
 # katex: true
 # markup: mmark
 # mmarktoc: false 
+UEVersion: 5.3.2
 ---
 
-
-{{% notice info %}}
-    Engine Version: 5.3.2
-{{% /notice %}}
 
 
 最近注意到在移动端上Build出来的HLOD看上去光照不太对，明显感觉法线出了点问题。但是在PIE和PC包里看上去都没问题。

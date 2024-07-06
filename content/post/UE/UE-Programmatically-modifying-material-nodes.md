@@ -13,13 +13,10 @@ fancybox: false
 # katex: true
 # markup: mmark
 # mmarktoc: false 
+UEVersion: 4.26.2
 ---
 
-{{% notice info %}}
-Engine Version: 4.26.2
-
 Note: I've tested the code on UE5 as well. There are some minor API changes, but the logic still applies.
-{{% /notice %}}
 
 # Introduction
 

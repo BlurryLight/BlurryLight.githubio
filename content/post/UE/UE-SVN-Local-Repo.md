@@ -13,11 +13,9 @@ fancybox: false
 # katex: true
 # markup: mmark
 # mmarktoc: false 
+UEVersion: 5.2.0
 ---
 
-{{% notice info %}}
-Engine Version: 5.2.0
-{{% /notice %}}
 
 **Perforce** is the first class source control system for Unreal Engine, Epic itself, along with many other game studios, including my current studio, are using it.
 Epic develops an excellent tool to work with Perforce [`UnrealGameSync`](https://docs.unrealengine.com/4.26/en-US/ProductionPipelines/DeployingTheEngine/UnrealGameSync/).

@@ -14,12 +14,9 @@ blueprint: false
 # katex: true
 # markup: mmark
 # mmarktoc: false 
+UEVersion: 5.2.1
 ---
 
-
-{{% notice info %}}
-Engine Version: 5.2.1
-{{% /notice %}}
 
 最近碰到了打包UE的时候碰见了编译Spir-v Shader的时候，DXC直接抛Internal Error然后导致ShaderCompileWorker进程崩溃的情况，这种情况下甚至不会导出编译失败的Shader的源码。
 花了一段时间排查解决了，记录一下备忘。

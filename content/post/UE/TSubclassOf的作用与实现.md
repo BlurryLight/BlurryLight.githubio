@@ -16,12 +16,8 @@ mermaid: true
 # katex: true
 # markup: mmark
 # mmarktoc: false 
+UEVersion: 4.26.2
 ---
-
-
-{{% notice info %}}
-Engine Version: 4.26.2
-{{% /notice %}}
 
 # TSubclassOf的作用
 

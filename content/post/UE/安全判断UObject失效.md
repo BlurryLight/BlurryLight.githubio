@@ -14,11 +14,8 @@ blueprint: false
 # katex: true
 # markup: mmark
 # mmarktoc: false 
+UEVersion: 5.3.2
 ---
-
-{{% notice info %}}
-Engine Version: 5.3.2
-{{% /notice %}}
 
 最近碰到一个比较奇葩的问题，就是渲染线程里绑定材质Material Uniform的地方居然保存了`UTexture*`的裸指针。
 

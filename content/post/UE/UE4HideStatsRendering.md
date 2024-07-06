@@ -13,13 +13,10 @@ fancybox: false
 # katex: true
 # markup: mmark
 # mmarktoc: false 
+UEVersion: 4.26.2
 ---
 
 {{< zhTranslation "UE4 隐藏统计数据Stats渲染" >}} 
-
-{{% notice info %}}
-Engine Version: 4.26.2
-{{% /notice %}}
 
 Recently there was a need for hide UE4 `stats` rendering.
 

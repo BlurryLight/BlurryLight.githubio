@@ -13,12 +13,9 @@ fancybox: false
 # katex: true
 # markup: mmark
 # mmarktoc: false 
+UEVersion: 4.26.2
 ---
 
-
-{{% notice info %}}
-Engine Version: 4.26.2
-{{% /notice %}}
 
 最近有用UE生成zip文件的需求。
 

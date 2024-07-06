@@ -14,11 +14,8 @@ blueprint: false
 # katex: true
 # markup: mmark
 # mmarktoc: false 
+UEVersion: 4.26.2
 ---
-
-{{% notice info %}}
-Engine Version: 4.26.2
-{{% /notice %}}
 
 虚幻默认带有好几种不同的Allocator实现，用来实现不同的malloc/free策略。有一些调试用的Allocator可以用来查内存相关的bug。
 

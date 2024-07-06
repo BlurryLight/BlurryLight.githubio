@@ -13,12 +13,9 @@ fancybox: false
 # katex: true
 # markup: mmark
 # mmarktoc: false 
+UEVersion: 4.26.2
 ---
 
-
-{{% notice info %}}
-Engine Version: 4.26.2
-{{% /notice %}}
 
 There are tons of different functions that return `AssetName`/`AssetPath`/`PackagePath`/`PackageName`, but there are subtle differences in the strings returned by different APIs.
 What's worse, there are also many different APIs for manipulating assets that accept randomly formatted path strings. Some of them accept `Virtual Path` defined by UE, while others may accept `System Path`.

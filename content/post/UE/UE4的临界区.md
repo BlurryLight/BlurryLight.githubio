@@ -16,12 +16,8 @@ mermaid: false
 # katex: true
 # markup: mmark
 # mmarktoc: false 
+UEVersion: 4.26.2
 ---
-
-
-{{% notice info %}}
-Engine Version: 4.26.2
-{{% /notice %}}
 
 由于UE是多线程渲染结构，所以在主线程更新某个参数，而渲染线程需要某个参数的时候，往往需要加锁。
 其实C++在C++11以后提供了统一的锁结构，`std::mutex`。
