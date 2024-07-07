@@ -37,7 +37,7 @@ I made a simple scene with about 10 trees with FoliageActor(actually `HISM` ), a
 ![Unreal_Including_IndirectDraw_In_Statistics-2024-06-17-23-23-49](https://img.blurredcode.com/img/Unreal_Including_IndirectDraw_In_Statistics-2024-06-17-23-23-49.png?x-oss-process=style/compress)
 
 
-Actually there are about 400'000 triangles drawn, reported by Renderdoc.
+Actually there are about 400'000 vertices drawn, reported by Renderdoc.
 
 ![Unreal_Including_IndirectDraw_In_Statistics-2024-06-17-23-28-32](https://img.blurredcode.com/img/Unreal_Including_IndirectDraw_In_Statistics-2024-06-17-23-28-32.png?x-oss-process=style/compress)
 
