@@ -45,9 +45,11 @@ Jetbrains的Issue里也有人提了这个问题，UBT只导出了各个模块的
 
 我们注意到虚幻还是导出了`ndk`的部分头文件路径，但是缺少了llvm标准库和交叉编译环境的`/usr/include`路径，我们只需要依葫芦画瓢导出对应的路径即可。
 
-`Engine/Source/Programs/UnrealBuildTool/Platform/Android/UEBuildAndroid.cs`
+注意不能在`UEBuildAndroid.cs`处添加，不然在Android打包的时候会报错，有些符号有重定义。
+我们这里只是解决Rider索引的问题，在RiderProjectFile.cs导出即可。
 
-![UE_解决Rider开发Android时大片飘红的问题-2024-09-15-20-44-27](https://img.blurredcode.com/img/UE_解决Rider开发Android时大片飘红的问题-2024-09-15-20-44-27.png?x-oss-process=style/compress)
+![UE_解决Rider开发Android时大片飘红的问题-2024-09-16-11-35-58](https://img.blurredcode.com/img/UE_解决Rider开发Android时大片飘红的问题-2024-09-16-11-35-58.png?x-oss-process=style/compress)
+
 
 
 # 问题2： Rider找不到__cplusplus定义
@@ -81,16 +83,16 @@ VS也有一样的问题，每次用AGDE调试Android的时候都是一片红，�
 
 
 ```patch
-From 84c161c6f9f285e1f8a5445af44fcd05bec8f648 Mon Sep 17 00:00:00 2001
+From 33d0f2b1c2cb3cfc93ced92a0d46da2c18fbac19 Mon Sep 17 00:00:00 2001
 From: ravenzhong
 Date: Sun, 15 Sep 2024 20:33:20 +0800
 Subject: [PATCH] fix android rider index error
 
+update rider index
 ---
- .../Platform/Android/AndroidToolChain.cs       |  7 +++++++
- .../Platform/Android/UEBuildAndroid.cs         |  7 +++++++
- .../ProjectFiles/Rider/RiderProjectFile.cs     | 18 ++++++++++++++++++
- 3 files changed, 32 insertions(+)
+ .../Platform/Android/AndroidToolChain.cs      |  7 ++++
+ .../ProjectFiles/Rider/RiderProjectFile.cs    | 34 ++++++++++++++++++-
+ 2 files changed, 40 insertions(+), 1 deletion(-)
 
 diff --git a/Engine/Source/Programs/UnrealBuildTool/Platform/Android/AndroidToolChain.cs b/Engine/Source/Programs/UnrealBuildTool/Platform/Android/AndroidToolChain.cs
 index a87fea12b..6de38e974 100644
@@ -117,29 +119,34 @@ index a87fea12b..6de38e974 100644
  
  			// toolchain params (note: use ANDROID=1 same as we define it)
  			ToolchainLinkParamsArm64 = " --target=aarch64-none-linux-android" + NDKApiLevel64Int + " --gcc-toolchain=\"" + GCCToolchainPath + "\" --sysroot=\"" + SysrootPath + "\" -DANDROID=1";
-diff --git a/Engine/Source/Programs/UnrealBuildTool/Platform/Android/UEBuildAndroid.cs b/Engine/Source/Programs/UnrealBuildTool/Platform/Android/UEBuildAndroid.cs
-index c445e936a..cdaa3c8db 100644
---- a/Engine/Source/Programs/UnrealBuildTool/Platform/Android/UEBuildAndroid.cs
-+++ b/Engine/Source/Programs/UnrealBuildTool/Platform/Android/UEBuildAndroid.cs
-@@ -455,6 +455,13 @@ namespace UnrealBuildTool
- 
- 			CompileEnvironment.SystemIncludePaths.Add(DirectoryReference.Combine(NdkDir, "sources/android/native_app_glue"));
- 			CompileEnvironment.SystemIncludePaths.Add(DirectoryReference.Combine(NdkDir, "sources/android/cpufeatures"));
-+			//++ravenzhong
-+			CompileEnvironment.SystemIncludePaths.Add(DirectoryReference.Combine(NdkDir, "sources/cxx-stl/llvm-libc++/include"));
-+			CompileEnvironment.SystemIncludePaths.Add(DirectoryReference.Combine(NdkDir, "sources/cxx-stl/system/include"));
-+			CompileEnvironment.SystemIncludePaths.Add(DirectoryReference.Combine(NdkDir, "sources/third_party/vulkan/src/include"));
-+			CompileEnvironment.SystemIncludePaths.Add(new DirectoryReference(ToolChain.SysrootIncludePath));
-+			
-+			//--ravenzhong
- 
- 			//@TODO: Tegra Gfx Debugger - standardize locations - for now, change the hardcoded paths and force this to return true to test
- 			if (UseTegraGraphicsDebugger(Target))
 diff --git a/Engine/Source/Programs/UnrealBuildTool/ProjectFiles/Rider/RiderProjectFile.cs b/Engine/Source/Programs/UnrealBuildTool/ProjectFiles/Rider/RiderProjectFile.cs
-index b0ff096de..1e2466b57 100644
+index b0ff096de..61156e46e 100644
 --- a/Engine/Source/Programs/UnrealBuildTool/ProjectFiles/Rider/RiderProjectFile.cs
 +++ b/Engine/Source/Programs/UnrealBuildTool/ProjectFiles/Rider/RiderProjectFile.cs
-@@ -589,6 +589,24 @@ namespace UnrealBuildTool
+@@ -519,7 +519,21 @@ namespace UnrealBuildTool
+ 				Writer.WriteValue(Path.FullName);
+ 			}
+ 
+-			if (UEBuildPlatform.IsPlatformInGroup(Target.Platform, UnrealPlatformGroup.Windows))
++			//++ravenzhong
++			if (Target.Platform == UnrealTargetPlatform.Android)
++			{
++				string NDKPath = Environment.GetEnvironmentVariable("NDKROOT")!;
++				NDKPath = NDKPath.Replace("\"", "");
++				DirectoryReference NdkDir = new DirectoryReference(NDKPath);
++				Writer.WriteValue(DirectoryReference.Combine(NdkDir, "sources/cxx-stl/llvm-libc++/include").FullName);
++				Writer.WriteValue(DirectoryReference.Combine(NdkDir, "sources/cxx-stl/system/include").FullName);
++				Writer.WriteValue(DirectoryReference.Combine(NdkDir, "sources/third_party/vulkan/src/include").FullName);
++				AndroidToolChain ToolChain = new AndroidToolChain(Target.ProjectFile, Logger);
++				Writer.WriteValue(new DirectoryReference(ToolChain.SysrootIncludePath).FullName);
++			}
++			//--ravenzhong
++
++		if (UEBuildPlatform.IsPlatformInGroup(Target.Platform, UnrealPlatformGroup.Windows))
+ 			{
+ 				foreach (DirectoryReference Path in Target.Rules.WindowsPlatform.Environment!.IncludePaths)
+ 				{
+@@ -589,6 +603,24 @@ namespace UnrealBuildTool
  			{
  				Writer.WriteValue(Definition);
  			}
