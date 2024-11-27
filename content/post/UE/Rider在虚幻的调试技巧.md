@@ -2,7 +2,7 @@
 ---
 title: "Rider在虚幻的调试技巧"
 date: 2024-11-27T02:32:17Z
-draft: true
+draft: false 
 categories: [ "UE"]
 isCJKLanguage: true
 slug: "4bdaa5f3"
@@ -42,4 +42,13 @@ Rider的语法:
 
 # 条件断点
 
-Todo
+
+`FString`:  ` wcsstr((wchar_t*)MyString.Data.AllocatorInstance.Data, L"Search substring") `
+
+`FName`:  `strstr(((FNameEntry&)GNameBlocksDebug[MyFName.DisplayIndex.Value >> FNameDebugVisualizer::OffsetBits][FNameDebugVisualizer::EntryStride * (MyFName.DisplayIndex.Value & FNameDebugVisualizer::OffsetMask)]).AnsiName,"Searchsubstring")`
+
+
+# Reference:
+
+更详细的资料可以从这里找到，这片笔记的内容都包含在这片好文里
+https://dev.epicgames.com/community/learning/tutorials/dXl5/advanced-debugging-in-unreal-engine
