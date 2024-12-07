@@ -3,7 +3,7 @@
 title: "Puerts 编译带调试符号的debug版v8"
 date: 2023-12-23T15:18:42+08:00
 draft: false
-categories: ["UE"]
+categories: ["UE", "PuerTs"]
 isCJKLanguage: true
 slug: "964342de"
 toc: false

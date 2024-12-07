@@ -3,7 +3,7 @@
 title: "Build Mesa3D on MinGW64 in 2023"
 date: 2023-06-13T22:44:53+08:00
 draft: false
-categories: [ "win32"]
+categories: [ "win32","Mesa"]
 isCJKLanguage: true
 slug: "4c4e845f"
 toc: true

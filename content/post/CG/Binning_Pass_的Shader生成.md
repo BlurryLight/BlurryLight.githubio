@@ -3,7 +3,7 @@
 title: "Shader Generation for Binning Pass"
 date: 2024-03-21T21:53:02+08:00
 draft: false
-categories: [ "CG"]
+categories: [ "CG", "Mesa"]
 isCJKLanguage: true
 slug: "cc00bf0c"
 toc: false

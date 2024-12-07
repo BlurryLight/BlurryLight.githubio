@@ -3,7 +3,7 @@
 title: "BVH | Naive和SAH建树方法"
 date: 2024-11-30T18:41:41+08:00
 draft: false
-categories: [ "CG"]
+categories: [ "CG", "pbrt"]
 isCJKLanguage: true
 slug: "0e73fe60"
 toc: false
