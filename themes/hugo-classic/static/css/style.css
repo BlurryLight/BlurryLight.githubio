@@ -24,6 +24,8 @@ output:
 #TableOfContents, #TOC {
   border: 1px solid #eee;
   border-radius: 5px;
+  word-wrap: break-word !important;
+  white-space: normal !important;
 }
 
 /* Header and Footer */
